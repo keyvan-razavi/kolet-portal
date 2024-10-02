@@ -1,0 +1,15 @@
+# Ignore the config.json file
+config.json
+
+# Ignore all .log files in the logs directory
+logs/*.log
+
+# Ignore the entire build directory
+build/
+
+/node_modules
+/.env
+/build
+/coverage
+.vscode/
+.idea/
