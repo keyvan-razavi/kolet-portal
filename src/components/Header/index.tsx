@@ -11,7 +11,7 @@ const Header = (props: {
 }) => {
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
-      <div className="flex flex-grow items-center justify-between lg:justify-end px-4 py-4 shadow-2 md:px-6 2xl:px-11">
+      <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 lg:justify-end 2xl:px-11">
         <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
@@ -63,7 +63,7 @@ const Header = (props: {
               src={"/images/logo/logo-icon.svg"}
               alt="Logo"
             /> */}
-            <h1 className="font-Vazir font-bold text-2xl">سامانه فروش کلت</h1>
+            <h1 className="font-Vazir text-2xl font-bold">سامانه فروش کلت</h1>
           </Link>
         </div>
 
@@ -110,7 +110,7 @@ const Header = (props: {
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
-            <DropdownNotification />
+            {/* <DropdownNotification /> */}
             {/* <!-- Notification Menu Area --> */}
 
             {/* <!-- Chat Notification Area --> */}
@@ -119,7 +119,7 @@ const Header = (props: {
           </ul>
 
           {/* <!-- User Area --> */}
-          {/* <DropdownUser /> */}
+          <DropdownUser />
           {/* <!-- User Area --> */}
         </div>
       </div>

@@ -4,7 +4,7 @@ interface CardDataStatsProps {
   title: string;
   dimension: string;
   price: number;
-  amount: number;
+  amount?: number;
 }
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
@@ -14,7 +14,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   amount,
 }) => {
   return (
-    <div className="font-Vazir cursor-pointer rounded-sm border border-stroke bg-white px-5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div className="cursor-pointer rounded-sm border border-stroke bg-white px-5 py-6 font-Vazir shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="flex w-full items-center justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
@@ -44,9 +44,11 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
         <span className="flex items-center gap-1 text-sm font-medium text-meta-5">
           قیمت {price}
         </span>
-        <span className="flex items-center gap-1 text-sm font-medium text-green-400">
-          سهمیه {amount}
-        </span>
+        {amount && (
+          <span className="flex items-center gap-1 text-sm font-medium text-green-400">
+            سهمیه {amount}
+          </span>
+        )}
       </div>
     </div>
   );

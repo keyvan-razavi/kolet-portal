@@ -5,7 +5,7 @@ const SubmitDetails = () => {
   return (
     <div className="min-h-svh w-full" dir="rtl">
       <div className="mx-auto flex flex-col sm:w-full lg:w-1/2">
-        <div className="font-Vazir rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="rounded-sm border border-stroke bg-white font-Vazir shadow-default dark:border-strokedark dark:bg-boxdark">
           <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
             <h3 className=" font-medium text-black dark:text-white">
               جزئیات ثبت سفارش
@@ -40,11 +40,11 @@ const SubmitDetails = () => {
               </div>
               <div className="mb-4.5 h-fit w-full gap-2 rounded border-2 border-dashed border-stroke border-opacity-10 p-2 ">
                 <div className="mb-2 gap-2 border-b-2 border-stroke border-opacity-10 pb-2 xl:flex">
-                  <label className=" flex w-full items-center text-sm font-medium text-black dark:text-white xl:w-2/5">
+                  <label className=" flex w-full items-center pr-5 xl:pr-0 text-lg  font-medium text-black dark:text-white xl:w-2/5">
                     آجر سفال ۹*۲۰*۲۵
                   </label>
 
-                  <div className="w-full xl:w-2/5">
+                  <div className="my-2 w-full xl:m-0 xl:w-2/5">
                     <SelectGroupOne />
                   </div>
 
@@ -58,11 +58,11 @@ const SubmitDetails = () => {
                   </div>
                 </div>
                 <div className="mb-2 gap-2 border-b-2 border-stroke border-opacity-10 pb-2 xl:flex">
-                  <label className=" flex w-full items-center text-sm font-medium text-black dark:text-white xl:w-2/5">
+                  <label className=" flex w-full items-center pr-5 xl:pr-0 text-lg  font-medium text-black dark:text-white xl:w-2/5">
                     آجر سفال ۱۵*۲۰*۲۵
                   </label>
 
-                  <div className="w-full xl:w-2/5">
+                  <div className="my-2 w-full xl:m-0 xl:w-2/5">
                     <SelectGroupOne />
                   </div>
 
@@ -76,11 +76,11 @@ const SubmitDetails = () => {
                   </div>
                 </div>
                 <div className="mb-2 gap-2 border-b-2 border-stroke border-opacity-10 pb-2 xl:flex">
-                  <label className=" flex w-full items-center text-sm font-medium text-black dark:text-white xl:w-2/5">
+                  <label className=" flex w-full items-center pr-5 xl:pr-0 text-lg  font-medium text-black dark:text-white xl:w-2/5">
                     آجر سفال ۹*۲۰*۲۰
                   </label>
 
-                  <div className="w-full xl:w-2/5">
+                  <div className="my-2 w-full xl:m-0 xl:w-2/5">
                     <SelectGroupOne />
                   </div>
 
@@ -94,11 +94,11 @@ const SubmitDetails = () => {
                   </div>
                 </div>
                 <div className="mb-0 gap-2 xl:flex">
-                  <label className="flex w-full items-center text-sm font-medium text-black dark:text-white xl:w-2/5">
+                  <label className="flex w-full items-center pr-5 xl:pr-0 text-lg font-medium text-black dark:text-white xl:w-2/5">
                     آجر سفال ۱۵*۲۰*۲۰
                   </label>
 
-                  <div className="w-full xl:w-2/5">
+                  <div className="my-2 w-full xl:m-0 xl:w-2/5">
                     <SelectGroupOne />
                   </div>
 

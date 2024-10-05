@@ -50,7 +50,7 @@ const Login = () => {
                 </div>
 
                 <button className=" mt-10 flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                  Sign In
+                  ورود
                 </button>
               </div>
             </form>
