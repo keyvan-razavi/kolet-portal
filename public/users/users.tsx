@@ -48,6 +48,18 @@ export const users: User[] = [
         dimension: "20*20*9",
         price: 18950,
         availableAmount: 35000,
+      },      {
+        id: 5,
+        title: "آجر سفال",
+        dimension: "20*20*15",
+        price: 98650,
+        availableAmount: 123000,
+      },      {
+        id: 6,
+        title: "آجر سفال",
+        dimension: "20*25*9",
+        price: 85550,
+        availableAmount: 54000,
       },
     ],
   },
