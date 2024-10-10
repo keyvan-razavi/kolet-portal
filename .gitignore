@@ -15,5 +15,10 @@ build/
 .idea/
 
 .next
+.vercel
 
 .DS_Store
+.vercel
+.env*.local
+.env
+
