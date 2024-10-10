@@ -1,21 +1,11 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
-
-export const metadata: Metadata = {
-  title: "Next.js SignIn Page | TailAdmin - Next.js Dashboard Template",
-  description: "This is Next.js Signin Page TailAdmin Dashboard Template",
-};
 
 const Login = () => {
   return (
     <>
       {/* <Breadcrumb pageName="ورود به پورتال" /> */}
 
-      <div className="font-Vazir mt-20 min-h-svh w-full" dir="rtl">
+      <div className="mt-20 min-h-svh w-full font-Vazir" dir="rtl">
         <div className="mx-auto flex flex-col sm:w-full lg:w-1/2">
           {/* <!-- Sign In Form --> */}
 

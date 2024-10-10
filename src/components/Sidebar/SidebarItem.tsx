@@ -55,7 +55,7 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
 
         {item.children && (
           <div
-            className={`translate transform overflow-hidden ${
+            className={`translate transform overflow-hidden mr-5 ${
               pageName !== item.label.toLowerCase() && "hidden"
             }`}
           >

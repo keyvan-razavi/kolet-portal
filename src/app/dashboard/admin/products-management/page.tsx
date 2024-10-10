@@ -1,8 +1,13 @@
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import React from "react";
-// import { users } from "../../../../../public/users/users";
 import { products } from "../../../../../public/products/products";
 import CardDataStats from "@/components/CardDataStats";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Kolet: Products-Management",
+  description: "Products Management - Kole Portal",
+};
 
 const ProductsManagement = () => {
   return (

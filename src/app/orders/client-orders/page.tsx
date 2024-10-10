@@ -1,7 +1,13 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import TableThree from "@/components/Tables/TableThree";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Kolet: Orders",
+  description: "Orders Page: Kole Portal",
+};
 
 const ClientOrders = () => {
   return (

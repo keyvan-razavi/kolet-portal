@@ -113,7 +113,7 @@ const menuGroups = [
         route: "/dashboard/admin",
         children: [
           {
-            label: "مدیریت کاربران",
+            label: "مدیریت مشتری ها",
             route: "/dashboard/admin/users-management",
             icon: (
               <svg
@@ -136,7 +136,7 @@ const menuGroups = [
             ),
           },
           {
-            label: "مدیریت سفارشات",
+            label: "مدیریت سفارش ها",
             route: "/dashboard/admin/orders-management",
             icon: (
               <svg

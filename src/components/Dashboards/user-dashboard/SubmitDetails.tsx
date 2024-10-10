@@ -112,18 +112,6 @@ const SubmitDetails = () => {
                   </div>
                 </div>
               </div>
-
-              {/* <div className="mb-4.5">
-                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                      Email <span className="text-meta-1">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="Enter your email address"
-                      className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                    />
-                  </div> */}
-
               <div className="mb-6">
                 <label className=" mb-3 block text-sm  text-black dark:text-white">
                   توضیحات
@@ -135,7 +123,7 @@ const SubmitDetails = () => {
                 ></textarea>
               </div>
 
-              <Link href={"/"}>
+              <Link href={"/orders/client-orders"}>
                 <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
                   ثبت سفارش
                 </button>
