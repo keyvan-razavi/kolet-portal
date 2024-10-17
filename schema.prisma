@@ -5,26 +5,75 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Post {
-  id        String     @default(cuid()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
+model User {
+  id        String     @id @default(cuid())
+  role      Role       @default(USER)
+  name      String
+  password  String
+  phone     String     @unique
+  address   String?
+  shares    Share[]
+  orders    Order[]
+  cartItem  Cartitem[]
+  createdAt DateTime   @default(now()) @map(name: "created_at")
+  updatedAt DateTime   @updatedAt @map(name: "updated_at")
 }
 
-model User {
-  id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  posts         Post[]
-  @@map(name: "users")
+model Product {
+  id             String     @id @default(cuid())
+  name           String
+  dimension      String?
+  info           String?
+  price          Int?
+  availableCount Int?
+  cartItems      Cartitem[]
+  shares         Share[]
+  createdAt      DateTime   @default(now()) @map(name: "created_at")
+  updatedAt      DateTime   @updatedAt @map(name: "updated_at")
+}
+
+model Order {
+  id        String     @id @default(cuid())
+  status    Status     @default(PENDING)
+  cartItem  Cartitem[]
+  user      User?      @relation(fields: [userId], references: [id])
+  userId    String
+  createdAt DateTime   @default(now()) @map(name: "created_at")
+  updatedAt DateTime   @updatedAt @map(name: "updated_at")
+}
+
+model Cartitem {
+  id        String   @id @default(cuid())
+  count     Int
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String
+  order     Order?   @relation(fields: [orderId], references: [id])
+  orderId   String?
+  product   Product? @relation(fields: [productId], references: [id])
+  productId String
+}
+
+model Share {
+  id        String   @id @default(cuid())
+  count     Int
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String
+  product   Product? @relation(fields: [productId], references: [id])
+  productId String
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  PENDING
+  APPROVED
+  DISAPPROVED
 }
