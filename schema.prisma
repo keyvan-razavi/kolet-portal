@@ -14,7 +14,7 @@ model User {
   id        String     @id @default(cuid())
   role      Role       @default(USER)
   name      String
-  password  String
+  password  String    
   phone     String     @unique
   address   String?
   shares    Share[]
@@ -77,3 +77,4 @@ enum Status {
   APPROVED
   DISAPPROVED
 }
+
