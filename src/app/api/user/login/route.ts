@@ -22,6 +22,5 @@ export async function POST(request: any) {
     });
   }
 
-  // Login successful, return user data or token
-  return NextResponse.json({ result });
+  return NextResponse.json(result);
 }
