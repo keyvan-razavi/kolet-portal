@@ -1,45 +1,85 @@
-import { Package } from "@/types/package";
-import { orders } from "../../../public/orders/orders";
+"use client";
 
-const packageData: Package[] = [
-  {
-    name: "Free package",
-    price: 0.0,
-    invoiceDate: `Jan 13,2023`,
-    status: "Paid",
-  },
-  {
-    name: "Standard Package",
-    price: 59.0,
-    invoiceDate: `Jan 13,2023`,
-    status: "Paid",
-  },
-  {
-    name: "Business Package",
-    price: 99.0,
-    invoiceDate: `Jan 13,2023`,
-    status: "Unpaid",
-  },
-  {
-    name: "Standard Package",
-    price: 59.0,
-    invoiceDate: `Jan 13,2023`,
-    status: "Pending",
-  },
-];
+import { useEffect, useState } from "react";
+import Loader from "../common/Loader";
+import moment from "moment";
+import jMoment from "moment-jalaali";
 
-const TableThree = () => {
+moment.locale("fa"); // Set the locale to Persian
+
+interface Order {
+  id: string;
+  status: any;
+  cartitem: any;
+  userId: string;
+  createdAt: string;
+  userName: string;
+}
+
+interface User {
+  id: string;
+  name: string;
+}
+
+const OrdersList = () => {
+  const [orders, setOrders] = useState<Order[] | null>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [users, setUsers] = useState<User[] | null>(null);
+  const [combinedData, setCombinedData] = useState<any[]>([]);
+
+  function combineUsersAndOrders(users: User[], orders: Order[]) {
+    return orders.map((order) => {
+      const user = users.find((user) => user.id === order.userId);
+      return {
+        ...order,
+        userName: user ? user.name : null,
+      };
+    });
+  }
+
+  useEffect(() => {
+    const fetchUsersAndOrders = async () => {
+      try {
+        const ordersResponse = await fetch("/api/orders/user-orders");
+        const orderData = await ordersResponse.json();
+        setOrders(orderData);
+
+        const usersResponse = await fetch("/api/user/all-users");
+        const userData = await usersResponse.json();
+        setUsers(userData);
+
+        const combinedData = combineUsersAndOrders(userData, orderData);
+        setCombinedData(combinedData);
+
+        setIsLoading(false);
+      } catch (error) {
+        // setError(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchUsersAndOrders();
+  }, []);
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
-    <div className="font-Vazir rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 overflow-x-auto">
+    <div className="ounded-sm overflow-x-auto border border-stroke bg-white px-5 pb-2.5 pt-6 font-Vazir shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
-            <tr className="bg-gray-2 text-center dark:bg-meta-4 text-nowrap">
+            <tr className="text-nowrap bg-gray-2 text-center dark:bg-meta-4">
               <th className="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
-              عنوان و مبلغ کل 
+                نام خریدار
               </th>
               <th className="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white">
-                تاریخ ثبت 
+                تاریخ ثبت
               </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
                 وضعیت
@@ -47,28 +87,31 @@ const TableThree = () => {
               <th className="px-4 py-4 font-medium text-black dark:text-white">
                 اقلام فاکتور
               </th>
+              <th className="px-4 py-4 font-medium text-black dark:text-white">
+                عملیات
+              </th>
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
+            {combinedData!.map((order: Order) => (
               <tr key={order.id} className="text-center">
                 <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">
-                    {order.items[0].productName[0]}
+                    {order!.userName}
                   </h5>
-                  <p className="text-sm">${order.totalCost}</p>
+                  {/* <p className="text-sm">${order.status}</p> */}
                 </td>
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p className="text-black dark:text-white">
-                    {order.submitDate}
+                    {jMoment(order.createdAt).format("jYYYY/jMM/jDD")}
                   </p>
                 </td>
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark text-nowrap">
+                <td className="text-nowrap border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p
                     className={`inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium ${
-                      order.status === "نهایی شده"
+                      order.status === "APPROVED"
                         ? "bg-success text-success"
-                        : order.status === "عدم تایید"
+                        : order.status === "DISAPPROVED"
                           ? "bg-danger text-danger"
                           : "bg-warning text-warning"
                     }`}
@@ -76,9 +119,15 @@ const TableThree = () => {
                     {order.status}
                   </p>
                 </td>
-                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark text-nowrap">
-                  {/* <div className="flex items-center space-x-3.5">
-                    <button className="hover:text-primary">
+                <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                  <p className="text-black dark:text-white">products</p>
+                </td>
+                <td className="text-nowrap border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                  <div className="flex items-center justify-between space-x-3.5">
+                    <button
+                      className="hover:text-primary"
+                      style={{ margin: "0px" }}
+                    >
                       <svg
                         className="fill-current"
                         width="18"
@@ -97,9 +146,12 @@ const TableThree = () => {
                         />
                       </svg>
                     </button>
-                    <button className="hover:text-primary">
+                    <button
+                      className="hover:text-primary"
+                      style={{ margin: "0px" }}
+                    >
                       <svg
-                        className="fill-current"
+                        className="m-0 fill-current"
                         width="18"
                         height="18"
                         viewBox="0 0 18 18"
@@ -124,9 +176,12 @@ const TableThree = () => {
                         />
                       </svg>
                     </button>
-                    <button className="hover:text-primary">
+                    <button
+                      className="hover:text-primary"
+                      style={{ margin: "0px" }}
+                    >
                       <svg
-                        className="fill-current"
+                        className="m-0 fill-current"
                         width="18"
                         height="18"
                         viewBox="0 0 18 18"
@@ -143,8 +198,7 @@ const TableThree = () => {
                         />
                       </svg>
                     </button>
-                  </div> */}
-                  {order.items[0].productName[0]} + {order.items[0].productName[1]}
+                  </div>
                 </td>
               </tr>
             ))}
@@ -155,4 +209,4 @@ const TableThree = () => {
   );
 };
 
-export default TableThree;
+export default OrdersList;
