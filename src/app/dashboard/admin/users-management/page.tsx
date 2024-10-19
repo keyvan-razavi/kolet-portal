@@ -1,18 +1,15 @@
+import NewClient from "@/components/FormElements/NewClient";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
-import TableFour from "@/components/Tables/TableFour";
+import ClientsList from "@/components/Tables/ClientsList";
 import React from "react";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Kolet: Users-Management",
-  description: "Users Management - Kole Portal",
-};
 
 const UserManagement = () => {
+
   return (
     <DefaultLayout>
       <div className="flex min-h-svh flex-col gap-5 font-Vazir" dir="rtl">
-        <TableFour />
+        <NewClient />
+        <ClientsList />
       </div>
     </DefaultLayout>
   );

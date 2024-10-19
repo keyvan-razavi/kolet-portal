@@ -1,7 +1,7 @@
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import React from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import TableThree from "@/components/Tables/TableThree";
+import TableThree from "@/components/Tables/OrdersList";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

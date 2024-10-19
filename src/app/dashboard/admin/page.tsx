@@ -3,7 +3,7 @@ import CardDataStats from "@/components/CardDataStats";
 import { users } from "../../../../public/users/users";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { Metadata } from "next";
-import TableThree from "@/components/Tables/TableThree";
+import TableThree from "@/components/Tables/OrdersList";
 
 export const metadata: Metadata = {
   title: "Kolet: Admin Dashboard",
@@ -35,7 +35,7 @@ const AdminDashboard: React.FC = () => {
           سفارشهای اخیر:
         </h1>
         <div>
-          <TableThree/>
+          <TableThree />
         </div>
       </div>
     </DefaultLayout>
