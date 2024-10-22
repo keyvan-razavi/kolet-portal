@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const OrdersManagement = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="سفارشها" />
+      <Breadcrumb pageName="مدیریت سفارشها" />
       <div className="min-h-svh xl:max-w-full">
         <OrdersList />
       </div>

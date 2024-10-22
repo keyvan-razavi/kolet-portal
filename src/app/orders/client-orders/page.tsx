@@ -1,6 +1,6 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
-import TableThree from "@/components/Tables/OrdersList";
+import OrdersList from "@/components/Tables/OrdersList";
 import { Metadata } from "next";
 import React from "react";
 
@@ -14,7 +14,7 @@ const ClientOrders = () => {
     <DefaultLayout>
       <Breadcrumb pageName="سفارشها" />
       <div className="min-h-svh xl:max-w-full">
-        <TableThree />
+        <OrdersList />
       </div>
     </DefaultLayout>
   );
