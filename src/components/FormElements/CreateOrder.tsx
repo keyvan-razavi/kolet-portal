@@ -1,7 +1,7 @@
 import SelectGroupOne from "@/components/SelectGroup/SelectGroupOne";
 import Link from "next/link";
 
-const SubmitDetails = () => {
+const CreateOrder = () => {
   return (
     <div className="min-h-svh w-full" dir="rtl">
       <div className="mx-auto flex flex-col sm:w-full lg:w-1/2">
@@ -40,7 +40,7 @@ const SubmitDetails = () => {
               </div>
               <div className="mb-4.5 h-fit w-full gap-2 rounded border-2 border-dashed border-stroke border-opacity-10 p-2 ">
                 <div className="mb-2 gap-2 border-b-2 border-stroke border-opacity-10 pb-2 xl:flex">
-                  <label className=" flex w-full items-center pr-5 xl:pr-0 text-lg  font-medium text-black dark:text-white xl:w-2/5">
+                  <label className=" flex w-full items-center pr-5 text-lg font-medium  text-black dark:text-white xl:w-2/5 xl:pr-0">
                     آجر سفال ۹*۲۰*۲۵
                   </label>
 
@@ -58,7 +58,7 @@ const SubmitDetails = () => {
                   </div>
                 </div>
                 <div className="mb-2 gap-2 border-b-2 border-stroke border-opacity-10 pb-2 xl:flex">
-                  <label className=" flex w-full items-center pr-5 xl:pr-0 text-lg  font-medium text-black dark:text-white xl:w-2/5">
+                  <label className=" flex w-full items-center pr-5 text-lg font-medium  text-black dark:text-white xl:w-2/5 xl:pr-0">
                     آجر سفال ۱۵*۲۰*۲۵
                   </label>
 
@@ -76,7 +76,7 @@ const SubmitDetails = () => {
                   </div>
                 </div>
                 <div className="mb-2 gap-2 border-b-2 border-stroke border-opacity-10 pb-2 xl:flex">
-                  <label className=" flex w-full items-center pr-5 xl:pr-0 text-lg  font-medium text-black dark:text-white xl:w-2/5">
+                  <label className=" flex w-full items-center pr-5 text-lg font-medium  text-black dark:text-white xl:w-2/5 xl:pr-0">
                     آجر سفال ۹*۲۰*۲۰
                   </label>
 
@@ -94,7 +94,7 @@ const SubmitDetails = () => {
                   </div>
                 </div>
                 <div className="mb-0 gap-2 xl:flex">
-                  <label className="flex w-full items-center pr-5 xl:pr-0 text-lg font-medium text-black dark:text-white xl:w-2/5">
+                  <label className="flex w-full items-center pr-5 text-lg font-medium text-black dark:text-white xl:w-2/5 xl:pr-0">
                     آجر سفال ۱۵*۲۰*۲۰
                   </label>
 
@@ -137,4 +137,4 @@ const SubmitDetails = () => {
   );
 };
 
-export default SubmitDetails;
+export default CreateOrder;

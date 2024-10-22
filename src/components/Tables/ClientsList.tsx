@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Loader from "../common/Loader";
 import moment from "moment";
 import jMoment from "moment-jalaali";
+import { orders } from "../../../public/orders/orders";
 
 interface User {
   id: string;
@@ -12,6 +13,15 @@ interface User {
   address: string;
   role: any;
   updatedAt: string;
+  orders: Order[];
+}
+
+interface Order {
+  id: string;
+  status: string;
+  userId: string;
+  updatedAt: string;
+  createdAt: string;
 }
 
 moment.locale("fa"); // Set the locale to Persian
@@ -89,8 +99,13 @@ const ClientsList: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-center p-2.5 xl:p-5">
+                {user.orders.map((o: Order) => (
+                  <p key={o.id}>
+                    {jMoment(o.createdAt).format("jYYYY/jMM/jDD")}
+                  </p>
+                ))}
                 <p className="font-medium text-black dark:text-white">
-                  {jMoment(user.updatedAt).format("jYYYY/jMM/jDD")}
+                  {/* {jMoment(user.updatedAt).format("jYYYY/jMM/jDD")} */}
                 </p>
               </div>
 

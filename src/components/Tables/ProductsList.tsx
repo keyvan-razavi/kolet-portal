@@ -2,49 +2,26 @@
 
 import { useEffect, useState } from "react";
 import Loader from "../common/Loader";
-import moment from "moment";
-import jMoment from "moment-jalaali";
-
-moment.locale("fa"); // Set the locale to Persian
 
 interface Product {
   id: string;
   name: string;
+  dimension: string;
+  info: string;
+  availableCount: number;
+  price: number;
 }
 
-interface CartItem {
-  id: string;
-  product: Product;
-  count: number;
-}
-
-interface Order {
-  id: string;
-  status: any;
-  userId: string;
-  user: User;
-  createdAt: string;
-  userName: string;
-  cartItem: CartItem[];
-}
-
-interface User {
-  id: string;
-  name: string;
-}
-
-const OrdersList = () => {
-  const [orders, setOrders] = useState<Order[] | null>([]);
+const ProductsList = () => {
+  const [products, setProducts] = useState<Product[] | null>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchUsers = async () => {
       try {
-        const response = await fetch("/api/orders/user-orders");
+        const response = await fetch("/api/products");
         const data = await response.json();
-        setOrders(data);
-
+        setProducts(data);
         setIsLoading(false);
       } catch (error) {
         // setError(error);
@@ -52,7 +29,7 @@ const OrdersList = () => {
       }
     };
 
-    fetchOrders();
+    fetchUsers();
   }, []);
 
   if (error) {
@@ -63,25 +40,24 @@ const OrdersList = () => {
     return <Loader />;
   }
 
-  console.log(orders);
-
+  console.log(products);
   return (
-    <div className="ounded-sm overflow-x-auto border border-stroke bg-white px-5 pb-2.5 pt-6 font-Vazir shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+    <div className="ounded-sm overflow-x-auto border border-stroke bg-white px-3 pb-3 pt-3 font-Vazir shadow-default dark:border-strokedark dark:bg-boxdark sm:px-3 xl:pb-3">
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
             <tr className="text-nowrap bg-gray-2 text-center dark:bg-meta-4">
               <th className="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
-                نام خریدار
+                نام محصول و مشخصات
               </th>
               <th className="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white">
-                تاریخ ثبت
+                موجودی
               </th>
               <th className="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-                وضعیت
+                قیمت واحد
               </th>
               <th className="px-4 py-4 font-medium text-black dark:text-white">
-                اقلام فاکتور
+                اطلاعات
               </th>
               <th className="px-4 py-4 font-medium text-black dark:text-white">
                 عملیات
@@ -89,43 +65,24 @@ const OrdersList = () => {
             </tr>
           </thead>
           <tbody>
-            {orders!.map((order: Order) => (
-              <tr key={order.id} className="text-center">
+            {products!.map((p: Product) => (
+              <tr key={p.id} className="text-center">
                 <td className="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">
-                    {order!.user.name}
+                    {p!.name}
                   </h5>
-                  {/* <p className="text-sm">${order.status}</p> */}
+                  <p className="text-sm">{p.dimension}</p>
                 </td>
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <p className="text-black dark:text-white">
-                    {jMoment(order.createdAt).format("jYYYY/jMM/jDD")}
+                    {p.availableCount}
                   </p>
                 </td>
                 <td className="text-nowrap border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  <p
-                    className={`inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium ${
-                      order.status === "APPROVED"
-                        ? "bg-success text-success"
-                        : order.status === "DISAPPROVED"
-                          ? "bg-danger text-danger"
-                          : "bg-warning text-warning"
-                    }`}
-                  >
-                    {order.status}
-                  </p>
+                  <p>{p.price}</p>
                 </td>
                 <td className="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-                  {order.cartItem.map((ci: CartItem) => (
-                    <div
-                      className="flex flex-col text-black dark:text-white"
-                      key={ci.product.id}
-                    >
-                      <span>
-                        {ci.product.name} : {ci.count}
-                      </span>
-                    </div>
-                  ))}
+                  <p className="text-sm">{p.info}</p>
                 </td>
                 <td className="text-nowrap border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                   <div className="flex items-center justify-between space-x-3.5">
@@ -211,7 +168,49 @@ const OrdersList = () => {
         </table>
       </div>
     </div>
+    // <div className="rounded-sm border border-stroke bg-white font-Vazir shadow-default dark:border-strokedark dark:bg-boxdark">
+    //   <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+    //     <div className="col-span-3 flex items-center">
+    //       <p className="font-medium">نام محصول</p>
+    //     </div>
+    //     <div className="col-span-2 hidden items-center sm:flex">
+    //       <p className="font-medium">قیمت</p>
+    //     </div>
+    //     <div className="col-span-1 flex items-center">
+    //       <p className="font-medium">اطلاعات</p>
+    //     </div>
+    //     <div className="col-span-1 flex items-center">
+    //       <p className="font-medium">موجودی</p>
+    //     </div>
+    //   </div>
+
+    //   {products!.map((p) => (
+    //     <div
+    //       className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+    //       key={p.id}
+    //     >
+    //       <div className="col-span-3 flex items-center">
+    //         <div className="flex flex-col gap-4 sm:items-center">
+    //           <p className="text-sm text-black dark:text-white">{p.name}</p>
+
+    //           <p className="text-sm text-black dark:text-white">
+    //             {p.dimension}
+    //           </p>
+    //         </div>
+    //       </div>
+    //       <div className="col-span-1 flex items-center">
+    //         <p className="text-sm text-black dark:text-white">{p.price}</p>
+    //       </div>
+    //       <div className="col-span-1 flex items-center">
+    //         <p className="text-sm text-black dark:text-white">{p.info}</p>
+    //       </div>
+    //       <div className="col-span-1 flex items-center">
+    //         <p className="text-sm text-meta-3">{p.availableCount}</p>
+    //       </div>
+    //     </div>
+    //   ))}
+    // </div>
   );
 };
 
-export default OrdersList;
+export default ProductsList;
