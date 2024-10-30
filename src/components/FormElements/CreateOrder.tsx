@@ -1,7 +1,17 @@
+"use client";
+
 import SelectGroupOne from "@/components/SelectGroup/SelectGroupOne";
 import Link from "next/link";
+import { useState } from "react";
+
+interface Client {
+  name: string;
+  phone: number;
+}
 
 const CreateOrder = () => {
+  const [clientName, setClientName] = useState("");
+  const [clientPhone, setClientPhone] = useState("");
   return (
     <div className="min-h-svh w-full" dir="rtl">
       <div className="mx-auto flex flex-col sm:w-full lg:w-1/2">
@@ -19,6 +29,7 @@ const CreateOrder = () => {
                     نام خریدار
                   </label>
                   <input
+                    onChange={(e) => setClientName(e.target.value)}
                     required
                     type="text"
                     placeholder="نام عامل خرید"
@@ -31,8 +42,9 @@ const CreateOrder = () => {
                     شماره تماس
                   </label>
                   <input
+                    onChange={(e) => setClientPhone(e.target.value)}
                     required
-                    type="text"
+                    type="number"
                     placeholder="۰۱۲۳۴۵۶۷۸۹۰"
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                   />
@@ -57,7 +69,7 @@ const CreateOrder = () => {
                     />
                   </div>
                 </div>
-                <div className="mb-2 gap-2 border-b-2 border-stroke border-opacity-10 pb-2 xl:flex">
+                {/* <div className="mb-2 gap-2 border-b-2 border-stroke border-opacity-10 pb-2 xl:flex">
                   <label className=" flex w-full items-center pr-5 text-lg font-medium  text-black dark:text-white xl:w-2/5 xl:pr-0">
                     آجر سفال ۱۵*۲۰*۲۵
                   </label>
@@ -92,7 +104,7 @@ const CreateOrder = () => {
                       className="w-full rounded border-[1.5px] border-stroke bg-transparent px-2 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="mb-0 gap-2 xl:flex">
                   <label className="flex w-full items-center pr-5 text-lg font-medium text-black dark:text-white xl:w-2/5 xl:pr-0">
                     آجر سفال ۱۵*۲۰*۲۰

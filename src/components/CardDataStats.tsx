@@ -4,7 +4,7 @@ interface CardDataStatsProps {
   title: string;
   dimension: string;
   price: number;
-  amount?: number;
+  amount: number;
 }
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
