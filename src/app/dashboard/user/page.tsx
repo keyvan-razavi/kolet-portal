@@ -1,10 +1,9 @@
 import React from "react";
-import CardDataStats from "@/components/CardDataStats";
-import SubmitDetails from "@/components/FormElements/CreateOrder";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { Metadata } from "next";
-import { products } from "../../../../public/products/products";
+
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import UserProducts from "@/components/Tables/UserProducts";
+import CreateOrder from "@/components/FormElements/CreateOrder";
 
 export const metadata: Metadata = {
   title: "Kolet: User Dashboard",
@@ -17,7 +16,7 @@ const UserDashboard: React.FC = async () => {
       <div className="flex min-h-svh flex-col gap-5 font-Vazir" dir="rtl">
         <UserProducts />
         <h1 className="m-0 pr-5 text-title-md">ثبت سفارش</h1>
-        <SubmitDetails />
+        <CreateOrder />
       </div>
     </DefaultLayout>
   );
